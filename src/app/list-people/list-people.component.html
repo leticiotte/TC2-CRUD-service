@@ -1,0 +1,9 @@
+<ul>
+  <dt *ngFor="let person of lista; let i = index" class="service-list ">
+    <h3> {{person.name}}</h3>
+    <img *ngIf="person.photo !=  undefined" src="{{person.photo}}"/>
+    <img *ngIf="person.photo == undefined" src="https://www.senff.com.br/app/themes/senff/resources/assets/images/icons/loginusuario.svg"/>
+    <p> {{ person.birthDate | date}}</p>
+      <button type="button" class="btn btn-secondary" (click)="deletarPessoa(person)"> Remover </button>
+  </dt>
+</ul>
