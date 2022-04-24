@@ -1,19 +1,22 @@
 <form ngNativeValidate>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" type="text/css" />
 
-  <label>Nome
-    <input name="name" type="text" placeholder="Nome da pessoa" [(ngModel)]="name">
+  <label>
+      Nome
+      <input name="name" type="text" placeholder="Nome da pessoa" [(ngModel)]="person.name" />
   </label>
-<br>
+  <br />
 
-  <label _ngcontent-xdb-c9="" class="label">Data de nascimento
-    <input name="birthDate" id="birthDate" type="date" [(ngModel)]="birthDate">
+  <label _ngcontent-xdb-c9="" class="label">
+      Data de nascimento
+      <input name="birthDate" id="birthDate" type="date" [(ngModel)]="person.birthDateFormatted" />
   </label>
-<br>
-  <label >Foto
-    <input name="photo" id="photo" type="url" placeholder="Url da imagem" [(ngModel)]="photo">
+  <br />
+  <label>
+      Foto
+      <input name="photo" id="photo" type="url" placeholder="Url da imagem" [(ngModel)]="person.photo" />
   </label>
-<br>
-<input (click)="updatePerson()" type="submit"  value="Atualizar">
-<button routerLink="/listar" type="submit">Voltar</button>
+  <br />
+  <input (click)="updatePerson()" type="submit" value="Atualizar" />
+  <button routerLink="/listar" type="submit">Voltar</button>
 </form>

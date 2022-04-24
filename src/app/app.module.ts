@@ -12,6 +12,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { DetailPersonComponent } from './detail-person/detail-person.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

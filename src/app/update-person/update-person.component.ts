@@ -9,13 +9,12 @@ import { Person } from '../model/person';
   styleUrls: ['./update-person.component.scss']
 })
 export class UpdatePersonComponent implements OnInit {
-
   name:string
   birthDate:string
   photo:string;
+  person: Person;
 
-  person : Person;
-
+  
   constructor(private service : WebService, private rota: ActivatedRoute) { }
 
   updatePerson(){
@@ -36,6 +35,8 @@ export class UpdatePersonComponent implements OnInit {
   ngOnInit(): void {
     let index = parseInt(this.rota.snapshot.paramMap.get("index"));
     this.person = this.service.getPerson(index);
+    this.person.birthDateFormatted = this.person.birthDate.toISOString().split('T')[0]
+
    }
 
 

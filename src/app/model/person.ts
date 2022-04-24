@@ -3,6 +3,7 @@ export interface Person {
   name: string,
   birthDate: Date,
   photo: string,
+  birthDateFormatted?: string
 }
 
 /* export class Person {

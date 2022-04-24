@@ -14,9 +14,9 @@ export class RegisterPersonComponent implements OnInit {
   name:string
   birthDate:string
   photo:string
-
   constructor(
     private service : WebService
+    
   ) { }
 
   register(){
