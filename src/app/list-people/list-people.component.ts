@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { Person } from '../model/person';
-
+import { WebService } from '../service/web.service';
 
 @Component({
   selector: 'app-list-people',
@@ -9,18 +9,26 @@ import { Person } from '../model/person';
 })
 export class ListPeopleComponent implements OnInit {
 
-  @Input() lista : Person[] = [];
+  peopleList : Person[];
 
-  deletarPessoa(delPessoa:Person) : void{
-    const index = this.lista.findIndex(pessoa => pessoa.name === delPessoa.name)
-    if (index > -1) {
-      this.lista.splice(index, 1);
-    }
+  personSelected: Person = null;
+  personToUpdate: Person = null;
+
+  constructor(private service : WebService) { }
+
+  getPeople() {
+    this.peopleList = this.service.getPeople();
+    console.log(this.peopleList);
   }
 
-  constructor() { }
+  selecionar(person: Person){
+    this.personSelected=person;
+    console.log(this.personSelected);
+  }
 
   ngOnInit(): void {
+    this.getPeople();
   }
+
 
 }

@@ -1,9 +1,24 @@
-<ul>
-  <dt *ngFor="let person of lista; let i = index" class="service-list ">
-    <h3> {{person.name}}</h3>
-    <img *ngIf="person.photo !=  undefined" src="{{person.photo}}"/>
-    <img *ngIf="person.photo == undefined" src="https://www.senff.com.br/app/themes/senff/resources/assets/images/icons/loginusuario.svg"/>
-    <p> {{ person.birthDate | date}}</p>
-      <button type="button" class="btn btn-secondary" (click)="deletarPessoa(person)"> Remover </button>
-  </dt>
-</ul>
+<div class="div">
+<div>
+  <a class="list">Listar</a>
+  <table>
+      <thead>
+          <tr>
+              <td>Nome</td>
+              <td>Opções</td>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let person of peopleList,let i = index">
+              <td>{{person.name}}</td>
+              <button routerLink="/detalhar/{{i}}" type="button"> Ver Perfil </button>
+              <button routerLink="/atualizar/{{i}}" type="button"> Editar </button>
+              <button routerLink="/deletar/{{i}}" (click)="selecionar(person)" type="button">Deletar</button>
+          </tr>
+      </tbody>
+  </table>
+</div>
+<div>
+  <a routerLink="/cadastrar">cadastrar</a>
+</div>
+</div>

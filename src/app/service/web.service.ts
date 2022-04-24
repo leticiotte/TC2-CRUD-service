@@ -8,37 +8,56 @@ import { Observable} from "rxjs";
 })
 export class WebService {
 
-  baseURL = "https://banco-dados-teste.glitch.me/api";
+  id: number = 0;
+  private peopleList: Person[]=[
 
-  getPeople() : Observable<Person[]> {
-    return this.http.get<Person[]>(this.baseURL + "/people");
+  ];
+
+  constructor(){}
+
+  getPeople(){
+    return this.peopleList;
   }
 
-  getPerson(id) : Observable<Person> {
-    return this.http.get<Person>(this.baseURL + "/people/" + id);
+  getPerson(id: number){
+    return this.peopleList[id];
   }
 
-  registerPerson(person) : Observable<any>{
-    let body = new HttpParams();
-    body = body.set("id", person.id);
-    body = body.set("name", String(person.name));
-    body = body.set("birthDate", person.birthDate);
-    body = body.set("photo", person.photo);
-    return this.http.post(this.baseURL + "/people", body, {observe: "response"});
+  private exists(person : Person) {
+    for(let p of this.peopleList) {
+      if(p._id == person._id) {
+        return true;
+      }
+    }
+    return false;
   }
 
-  deletePerson(person): Observable<any>{
-    return this.http.delete(this.baseURL + "/people/" + person._id, {observe: "response"});
+  registerPerson(person : Person) {
+    person._id = this.id;
+    if(!this.exists(person)) {
+      this.peopleList.push(person);
+      this.id++;
+      return true;
+    }
+    return false;
   }
 
-  updatePerson(person) : Observable<any>{
-    let body = new HttpParams();
-    body = body.set("id", person.id);
-    body = body.set("name", String(person.name));
-    body = body.set("birthDate", person.birthDate);
-    body = body.set("photo", person.photo);
-    return this.http.put(this.baseURL + "/people/" + person._id, body, {observe: "response"});
+  deletePerson(person:Person){
+    if(this.exists(person)) {
+      this.peopleList.splice(person._id,1);
+      return true;
+    }
+    return false;
   }
 
-  constructor(private http : HttpClient) { }
+  updatePerson(person: Person){
+    if(this.exists(person)) {
+      this.peopleList.splice(person._id, 1, person);
+      return true;
+    }
+    return false;
+  }
+
+
+
 }

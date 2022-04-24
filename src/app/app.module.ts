@@ -9,6 +9,7 @@ import { UpdatePersonComponent } from './update-person/update-person.component';
 import { ListPeopleComponent } from './list-people/list-people.component';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { DetailPersonComponent } from './detail-person/detail-person.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     RegisterPersonComponent,
     DeletePersonComponent,
     UpdatePersonComponent,
-    ListPeopleComponent
+    ListPeopleComponent,
+    DetailPersonComponent
   ],
   imports: [
     BrowserModule,

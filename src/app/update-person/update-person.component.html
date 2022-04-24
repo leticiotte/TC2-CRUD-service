@@ -1,1 +1,19 @@
-<p>update-person works!</p>
+<form ngNativeValidate>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" type="text/css">
+
+  <label>Nome
+    <input name="name" type="text" placeholder="Nome da pessoa" [(ngModel)]="name">
+  </label>
+<br>
+
+  <label _ngcontent-xdb-c9="" class="label">Data de nascimento
+    <input name="birthDate" id="birthDate" type="date" [(ngModel)]="birthDate">
+  </label>
+<br>
+  <label >Foto
+    <input name="photo" id="photo" type="url" placeholder="Url da imagem" [(ngModel)]="photo">
+  </label>
+<br>
+<input (click)="updatePerson()" type="submit"  value="Atualizar">
+<button routerLink="/listar" type="submit">Voltar</button>
+</form>

@@ -1,4 +1,4 @@
-<form #personForm="ngForm" (submit)="onSubmit()" ngNativeValidate>
+<form ngNativeValidate>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" type="text/css">
 
   <label>Nome
@@ -14,6 +14,6 @@
     <input name="photo" id="photo" type="url" placeholder="Url da imagem" [(ngModel)]="photo">
   </label>
 <br>
-<input type="submit"  value="Submit">
+<input (click)="register()" type="submit"  value="Cadastrar">
+<button routerLink="/listar" type="submit">Voltar</button>
 </form>
-<app-list-people [lista]="peopleList"></app-list-people>

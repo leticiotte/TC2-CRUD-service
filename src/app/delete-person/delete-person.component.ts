@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, SimpleChanges} from '@angular/core';
+import { WebService } from '../service/web.service';
+import { Person } from '../model/person';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-delete-person',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeletePersonComponent implements OnInit {
 
-  constructor() { }
+  person : Person;
 
-  ngOnInit(): void {
+  constructor(private service : WebService, private rota: ActivatedRoute) { }
+
+  deletePerson() {
+    let person:Person = this.service.getPerson(this.person._id);
+    if(this.service.deletePerson(person)){
+      alert("Pessoa excluida com sucesso!");
+    }
+    else {
+      alert("Dados inválidos");
+    }
   }
 
+  ngOnInit(): void {
+    let index = parseInt(this.rota.snapshot.paramMap.get("index"));
+    this.person = this.service.getPerson(index);
+   }
 }

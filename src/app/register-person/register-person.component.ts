@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from "@angular/router";
+import { Location } from "@angular/common";
 import { Person } from '../model/person';
+import { WebService } from '../service/web.service';
 
 @Component({
   selector: 'app-register-person',
@@ -8,46 +11,27 @@ import { Person } from '../model/person';
 })
 export class RegisterPersonComponent implements OnInit {
 
-  id: number = 0;
   name:string
   birthDate:string
   photo:string
-  peopleList : Person[] = []
 
-  onSubmit() : void{
+  constructor(
+    private service : WebService
+  ) { }
+
+  register(){
     const person: Person = {
-      _id: this.id,
+      _id:0,
       name:this.name,
       birthDate: new Date(this.birthDate),
       photo: this.photo
     }
-    if(!this.getPessoa(person)){
-      this.adicionarPessoa(person);
-      this.id++;
-      console.log(person)
+    if(this.service.registerPerson(person)){
+      alert("Pessoa cadastrada com sucesso!")
     }else{
       alert("Pessoa já adicionada")
     }
   }
-
-  adicionarPessoa(person:Person) : void{
-      this.peopleList.push(person)
-      alert("Pessoa adicionada com sucesso")
-  }
-
-  getPessoa(getPessoa:Person) : boolean{
-    const index = this.peopleList.findIndex(p =>
-      p.name.toUpperCase() === getPessoa.name.toUpperCase()
-      )
-    if (index > -1) {
-      return true;
-    } else{
-      return false;
-    }
-  }
-
-  constructor() { }
-
   ngOnInit(): void {
   }
 
