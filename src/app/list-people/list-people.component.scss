@@ -1,3 +1,8 @@
+div{
+  margin-left: 35%;
+  margin-top: 30px;
+}
+
 a {
     cursor: pointer;
     padding: 10px;
@@ -5,15 +10,10 @@ a {
 
 table {
     font-family: arial, sans-serif;
-    width: 30%;
+    width: 50%;
     text-align: center;
     padding: 10px;
     border-collapse: collapse;
-}
-
-.center {
-    margin-left: auto;
-    margin-right: auto;
 }
 
 td,
@@ -26,15 +26,12 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 
-.margin {
-    margin-left: 20px;
-}
-
 button {
     border: none;
     background-color: #e7e7e7;
     color: black;
     padding: 15px;
+    margin-left:10px ;
     text-align: center;
     font-size: 12px;
     border-radius: 12px;

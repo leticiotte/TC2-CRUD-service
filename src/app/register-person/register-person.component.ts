@@ -18,7 +18,7 @@ export class RegisterPersonComponent implements OnInit {
   photo:string
   constructor(
     private service : WebService
-    
+
   ) { }
 
   register(){
@@ -28,10 +28,14 @@ export class RegisterPersonComponent implements OnInit {
       birthDate: new Date(this.birthDate),
       photo: this.photo
     }
-    if(this.service.registerPerson(person)){
-      alert("Pessoa cadastrada com sucesso!")
-    }else{  
-      alert("Pessoa já adicionada")
+    if(this.name!=null && this.birthDate!=null){
+      if(this.service.registerPerson(person)){
+        alert("Pessoa cadastrada com sucesso!")
+      }else{
+        alert("Pessoa já cadastrada")
+      }
+    }else{
+      alert("preencha todos os campos")
     }
   }
 

@@ -1,27 +1,20 @@
 <div>
-    <a routerLink="/cadastrar">Cadastrar pessoa</a>
+<table>
+  <thead>
+    <tr>
+    <td>Nome</td>
+    <td>Opções</td>
+    </tr>
+  </thead>
+  <tbody>
+          <tr *ngFor="let person of peopleList,let i = index">
+          <td>{{person.name}}
+          <td>
+          <button routerLink="/detalhar/{{person._id}}" type="button">Ver Perfil</button>
+          <button routerLink="/atualizar/{{person._id}}" type="button" class="margin">Editar</button>
+          <button routerLink="/deletar/{{person._id}}" (click)="selecionar(person)" type="button" class="margin">Deletar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
 </div>
-<div class="list">
-    <div>
-        <h3 class="list">Listar</h3>
-        <table>
-            <thead>
-                <tr>
-                    <td>Nome</td>
-                    <td>Opções</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let person of peopleList,let i = index">
-                    <td>{{person.name}}
-                    <td>
-                        <button routerLink="/detalhar/{{person._id}}" type="button">Ver Perfil</button>
-                        <button routerLink="/atualizar/{{person._id}}" type="button" class="margin">Editar</button>
-                        <button routerLink="/deletar/{{person._id}}" (click)="selecionar(person)" type="button" class="margin">Deletar</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-

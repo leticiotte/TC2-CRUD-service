@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, SimpleChanges} from '@angular/core';
 import { WebService } from '../service/web.service';
 import { Person } from '../model/person';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from "@angular/common";
+
 
 @Component({
   selector: 'app-delete-person',
@@ -12,7 +14,11 @@ export class DeletePersonComponent implements OnInit {
 
   person : Person;
 
-  constructor(private service : WebService, private rota: ActivatedRoute) { }
+  constructor(
+    private service : WebService,
+    private rota: ActivatedRoute,
+    private local : Location
+    ) { }
 
   deletePerson() {
     let person:Person = this.service.getPerson(this.person._id);
@@ -27,5 +33,13 @@ export class DeletePersonComponent implements OnInit {
   ngOnInit(): void {
     let index = this.rota.snapshot.paramMap.get("index");
     this.person = this.service.getPerson(index);
+    if(this.person===null){
+      this.voltar();
+      alert("Pessoa não encontrada!")
+    }
    }
+
+   voltar() : void {
+    this.local.back();
+  }
 }

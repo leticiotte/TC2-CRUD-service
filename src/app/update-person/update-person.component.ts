@@ -2,6 +2,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit} from '@angular/core';
 import { WebService } from '../service/web.service';
 import { Person } from '../model/person';
+import { Location } from "@angular/common";
+
 
 @Component({
   selector: 'app-update-person',
@@ -11,8 +13,12 @@ import { Person } from '../model/person';
 export class UpdatePersonComponent implements OnInit {
   birthDateFormatted: string
   person: Person;
-    
-  constructor(private service : WebService, private rota: ActivatedRoute) { }
+
+  constructor(
+    private service : WebService,
+    private rota: ActivatedRoute,
+    private local : Location
+    ) { }
 
   updatePerson(){
     const person: Person = {
@@ -22,9 +28,9 @@ export class UpdatePersonComponent implements OnInit {
       photo: this.person.photo
     }
     if(this.service.updatePerson(person)){
-      alert("Pessoa atualizada com sucesso!!")
+      alert("Pessoa atualizada com sucesso!")
     }else{
-      alert("Erro")
+      alert("Pessoa não encontrada!")
     }
   }
 
@@ -32,9 +38,17 @@ export class UpdatePersonComponent implements OnInit {
   ngOnInit(): void {
     let index = this.rota.snapshot.paramMap.get("index");
     this.person = this.service.getPerson(index);
+    if(this.person===null){
+      this.voltar();
+      alert("Pessoa não encontrada!")
+    }
     this.birthDateFormatted = this.person.birthDate.toISOString().split('T')[0]
 
-   }
+  }
+
+   voltar() : void {
+    this.local.back();
+  }
 
 
 }
