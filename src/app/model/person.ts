@@ -1,13 +1,7 @@
 export interface Person {
-  _id: number,
+  _id: string,
   name: string,
   birthDate: Date,
   photo: string,
   birthDateFormatted?: string
 }
-
-/* export class Person {
-  name: string = '';
-  birthDate: string = '';
-  photo: string = '';
-} */

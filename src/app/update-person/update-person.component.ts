@@ -9,20 +9,17 @@ import { Person } from '../model/person';
   styleUrls: ['./update-person.component.scss']
 })
 export class UpdatePersonComponent implements OnInit {
-  name:string
-  birthDate:string
-  photo:string;
+  birthDateFormatted: string
   person: Person;
-
-  
+    
   constructor(private service : WebService, private rota: ActivatedRoute) { }
 
   updatePerson(){
     const person: Person = {
       _id: this.person._id,
-      name:this.name,
-      birthDate: new Date(this.birthDate),
-      photo: this.photo
+      name:this.person.name,
+      birthDate: new Date(this.birthDateFormatted + "EDT"),
+      photo: this.person.photo
     }
     if(this.service.updatePerson(person)){
       alert("Pessoa atualizada com sucesso!!")
@@ -33,9 +30,9 @@ export class UpdatePersonComponent implements OnInit {
 
 
   ngOnInit(): void {
-    let index = parseInt(this.rota.snapshot.paramMap.get("index"));
+    let index = this.rota.snapshot.paramMap.get("index");
     this.person = this.service.getPerson(index);
-    this.person.birthDateFormatted = this.person.birthDate.toISOString().split('T')[0]
+    this.birthDateFormatted = this.person.birthDate.toISOString().split('T')[0]
 
    }
 

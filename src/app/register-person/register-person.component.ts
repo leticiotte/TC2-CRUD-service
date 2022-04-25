@@ -3,6 +3,8 @@ import { ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
 import { Person } from '../model/person';
 import { WebService } from '../service/web.service';
+import { v4 as uuidv4 } from 'uuid';
+
 
 @Component({
   selector: 'app-register-person',
@@ -21,17 +23,19 @@ export class RegisterPersonComponent implements OnInit {
 
   register(){
     const person: Person = {
-      _id:0,
+      _id: uuidv4(),
       name:this.name,
       birthDate: new Date(this.birthDate),
       photo: this.photo
     }
     if(this.service.registerPerson(person)){
       alert("Pessoa cadastrada com sucesso!")
-    }else{
+    }else{  
       alert("Pessoa já adicionada")
     }
   }
+
+
   ngOnInit(): void {
   }
 

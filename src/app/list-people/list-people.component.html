@@ -15,9 +15,9 @@
                 <tr *ngFor="let person of peopleList,let i = index">
                     <td>{{person.name}}
                     <td>
-                        <button routerLink="/detalhar/{{i}}" type="button">Ver Perfil</button>
-                        <button routerLink="/atualizar/{{i}}" type="button" class="margin">Editar</button>
-                        <button routerLink="/deletar/{{i}}" (click)="selecionar(person)" type="button" class="margin">Deletar</button>
+                        <button routerLink="/detalhar/{{person._id}}" type="button">Ver Perfil</button>
+                        <button routerLink="/atualizar/{{person._id}}" type="button" class="margin">Editar</button>
+                        <button routerLink="/deletar/{{person._id}}" (click)="selecionar(person)" type="button" class="margin">Deletar</button>
                     </td>
                 </tr>
             </tbody>

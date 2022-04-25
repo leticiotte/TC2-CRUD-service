@@ -9,9 +9,7 @@ import { Observable} from "rxjs";
 export class WebService {
 
   id: number = 0;
-  private peopleList: Person[]=[
-
-  ];
+  private peopleList: Person[]=[];
 
   constructor(){}
 
@@ -19,45 +17,50 @@ export class WebService {
     return this.peopleList;
   }
 
-  getPerson(id: number){
-    return this.peopleList[id];
+  getPerson(id: string){
+    console.log(id)
+    for(const person of this.peopleList){
+      if(person._id == id) return person
+    }
+    return null
   }
 
   private exists(person : Person) {
-    for(let p of this.peopleList) {
-      if(p._id == person._id) {
-        return true;
+    for(let i = 0; i < this.peopleList.length; i++){
+      if(this.peopleList[i]._id == person._id) {
+        return i;
       }
     }
-    return false;
+    return -1;
   }
 
+
   registerPerson(person : Person) {
-    person._id = this.id;
-    if(!this.exists(person)) {
+    if(this.getPerson(person._id) == null) {
       this.peopleList.push(person);
-      this.id++;
       return true;
     }
     return false;
   }
 
   deletePerson(person:Person){
-    if(this.exists(person)) {
-      this.peopleList.splice(person._id,1);
+    const i = this.exists(person)
+    console.log(i)
+    if(i >= 0) {
+      this.peopleList.splice(i, 1);
       return true;
     }
     return false;
   }
 
   updatePerson(person: Person){
-    if(this.exists(person)) {
-      this.peopleList.splice(person._id, 1, person);
+    const i = this.exists(person)
+    console.log(person)
+    if(i >= 0) {
+      this.peopleList.splice(i, 1, person);
       return true;
     }
     return false;
   }
-
-
 
 }

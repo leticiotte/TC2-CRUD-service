@@ -25,7 +25,7 @@ export class DeletePersonComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let index = parseInt(this.rota.snapshot.paramMap.get("index"));
+    let index = this.rota.snapshot.paramMap.get("index");
     this.person = this.service.getPerson(index);
    }
 }
