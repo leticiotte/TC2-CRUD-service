@@ -18,7 +18,6 @@ export class WebService {
   }
 
   getPerson(id: string){
-    console.log(id)
     for(const person of this.peopleList){
       if(person._id == id) return person
     }

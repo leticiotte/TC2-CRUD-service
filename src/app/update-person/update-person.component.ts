@@ -11,7 +11,7 @@ import { Location } from "@angular/common";
   styleUrls: ['./update-person.component.scss']
 })
 export class UpdatePersonComponent implements OnInit {
-  birthDateFormatted: string
+  birthDate: string
   person: Person;
 
   constructor(
@@ -24,13 +24,17 @@ export class UpdatePersonComponent implements OnInit {
     const person: Person = {
       _id: this.person._id,
       name:this.person.name,
-      birthDate: new Date(this.birthDateFormatted + "EDT"),
+      birthDate: new Date(this.birthDate + "EDT"),
       photo: this.person.photo
     }
-    if(this.service.updatePerson(person)){
-      alert("Pessoa atualizada com sucesso!")
+    if(this.validaData()!=null){
+      if(this.service.updatePerson(person)){
+        alert("Pessoa atualizada com sucesso!")
+      }else{
+        alert("Pessoa não encontrada!")
+      }
     }else{
-      alert("Pessoa não encontrada!")
+      alert("Data inválida!")
     }
   }
 
@@ -42,12 +46,30 @@ export class UpdatePersonComponent implements OnInit {
       this.voltar();
       alert("Pessoa não encontrada!")
     }
-    this.birthDateFormatted = this.person.birthDate.toISOString().split('T')[0]
+    this.birthDate = this.person.birthDate.toISOString().split('T')[0]
 
   }
 
    voltar() : void {
     this.local.back();
+  }
+
+  validaData(): Date{
+    let dataMov = new Date(this.birthDate)
+    let dataAtual = new Date();
+
+    let m1 = dataAtual.getMonth()+1;
+    let a1 = dataAtual.getFullYear();
+    let d1 = dataAtual.getDate();
+
+    let m2= dataMov.getMonth()+1;
+    let a2 = dataMov.getFullYear();
+    let d2 = dataMov.getDate()+1;
+
+    if(a2<=a1 && m2<=m1 && d2<=d1){
+      return dataMov;
+    }
+    return null;
   }
 
 

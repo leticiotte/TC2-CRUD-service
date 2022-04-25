@@ -6,3 +6,7 @@
     <img *ngIf="person.photo == undefined" src="https://www.senff.com.br/app/themes/senff/resources/assets/images/icons/loginusuario.svg"/>
     <button routerLink="/listar" type="submit">Voltar</button>
 </div>
+
+<ng-container *ngIf="person == null">
+  <h2>Pessoa não encontrada!</h2>
+</ng-container>

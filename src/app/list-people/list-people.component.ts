@@ -18,17 +18,13 @@ export class ListPeopleComponent implements OnInit {
 
   getPeople() {
     this.peopleList = this.service.getPeople();
-    console.log(this.peopleList);
   }
 
   selecionar(person: Person){
     this.personSelected=person;
-    console.log(this.personSelected);
   }
 
   ngOnInit(): void {
     this.getPeople();
   }
-
-
 }
