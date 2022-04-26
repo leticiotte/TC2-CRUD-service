@@ -27,7 +27,7 @@ export class UpdatePersonComponent implements OnInit {
     const person: Person = {
       _id: this.person._id,
       name:this.person.name,
-      birthDate: new Date(this.birthDate + "EDT"),
+      birthDate: new Date(Number(this.birthDate.slice(0, 4)), Number(this.birthDate.slice(5, 7)) - 1, Number(this.birthDate.slice(8))),
       photo: this.person.photo
     }
 

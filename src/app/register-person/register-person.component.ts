@@ -24,9 +24,10 @@ export class RegisterPersonComponent implements OnInit {
     const person: Person = {
       _id: uuidv4(),
       name: this.name,
-      birthDate: new Date(this.birthDate),
+      birthDate: new Date(Number(this.birthDate.slice(0, 4)), Number(this.birthDate.slice(5, 7)) - 1, Number(this.birthDate.slice(8))),
       photo: this.photo,
     };
+    console.log(person.birthDate)
     if (this.formCadastro.valid) {
       if (this.validaData() != null) {
         if (this.service.registerPerson(person)) {

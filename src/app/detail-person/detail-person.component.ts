@@ -25,8 +25,10 @@ export class DetailPersonComponent implements OnInit {
     this.person = this.service.getPerson(index);
     if(this.person!==null){
       const date = new Date(this.person.birthDate)
+      console.log(date)
       date.setDate(this.person.birthDate.getDate() + 1);
-      this.birthDate = date.toLocaleDateString()
+      console.log(date)
+      this.birthDate = this.person.birthDate.toLocaleDateString()
     }
    }
 
