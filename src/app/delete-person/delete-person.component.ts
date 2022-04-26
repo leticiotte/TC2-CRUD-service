@@ -23,7 +23,7 @@ export class DeletePersonComponent implements OnInit {
     if (this.service.deletePerson(person)) {
       alert("Pessoa excluida com sucesso!");
     } else {
-      alert("Dados inválidos");
+      alert("Pessoa não encontrada.");
     }
   }
 

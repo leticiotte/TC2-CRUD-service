@@ -11,6 +11,7 @@ import { Location } from "@angular/common";
   styleUrls: ['./detail-person.component.scss']
 })
 export class DetailPersonComponent implements OnInit {
+  birthDate : string
   person : Person;
 
   constructor(
@@ -22,6 +23,11 @@ export class DetailPersonComponent implements OnInit {
   ngOnInit(): void {
     let index = this.rota.snapshot.paramMap.get("index");
     this.person = this.service.getPerson(index);
+    if(this.person!==null){
+      const date = new Date(this.person.birthDate)
+      date.setDate(this.person.birthDate.getDate() + 1);
+      this.birthDate = date.toLocaleDateString()
+    }
    }
 
    voltar() : void {
