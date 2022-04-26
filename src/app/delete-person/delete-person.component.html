@@ -1,5 +1,10 @@
-<div>
+<div *ngIf="person !==  null">
   <p>Têm certeza que deseja excluir a/o {{person.name}}?</p>
-  <button type="submit" (click)="deletePerson()" id='excluir'>Excluir</button>
-  <button routerLink="/listar" type="submit" id='voltar'>Voltar</button>
+  <button type="submit" (click)="deletePerson()" id="excluir">Excluir</button>
+  <button routerLink="/listar" type="submit" id="voltar">Voltar</button>
+</div>
+
+<div *ngIf="person ===  null">
+  <h2>Pessoa não encontrada!</h2>
+  <button routerLink="/listar" type="submit" id="voltar">Voltar</button>
 </div>

@@ -1,17 +1,16 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { RegisterPersonComponent } from './register-person/register-person.component';
-import { DeletePersonComponent } from './delete-person/delete-person.component';
-import { UpdatePersonComponent } from './update-person/update-person.component';
-import { ListPeopleComponent } from './list-people/list-people.component';
-import { FormsModule } from '@angular/forms';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { DetailPersonComponent } from './detail-person/detail-person.component';
-
-
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { RegisterPersonComponent } from "./register-person/register-person.component";
+import { DeletePersonComponent } from "./delete-person/delete-person.component";
+import { UpdatePersonComponent } from "./update-person/update-person.component";
+import { ListPeopleComponent } from "./list-people/list-people.component";
+import { FormsModule } from "@angular/forms";
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { DetailPersonComponent } from "./detail-person/detail-person.component";
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -20,15 +19,16 @@ import { DetailPersonComponent } from './detail-person/detail-person.component';
     DeletePersonComponent,
     UpdatePersonComponent,
     ListPeopleComponent,
-    DetailPersonComponent
+    DetailPersonComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

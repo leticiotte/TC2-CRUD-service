@@ -3,6 +3,7 @@ import { Component, OnInit} from '@angular/core';
 import { WebService } from '../service/web.service';
 import { Person } from '../model/person';
 import { Location } from "@angular/common";
+import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 
 
 @Component({
@@ -12,7 +13,9 @@ import { Location } from "@angular/common";
 })
 export class UpdatePersonComponent implements OnInit {
   birthDate: string
+  today: Date = new Date();
   person: Person;
+  formCadastro : FormGroup;
 
   constructor(
     private service : WebService,
@@ -27,50 +30,56 @@ export class UpdatePersonComponent implements OnInit {
       birthDate: new Date(this.birthDate + "EDT"),
       photo: this.person.photo
     }
-    if(this.validaData()!=null){
-      if(this.service.updatePerson(person)){
-        alert("Pessoa atualizada com sucesso!")
+
+
+    if(this.formCadastro.valid){
+      if(this.validaData()!=null){
+        if(this.service.updatePerson(person)){
+          alert("Pessoa atualizada com sucesso!")
+        }else{
+          alert("Pessoa não encontrada!")
+        }
       }else{
-        alert("Pessoa não encontrada!")
+        alert("Data inválida!")
       }
     }else{
-      alert("Data inválida!")
+      alert("Preencha todos os campos!")
     }
+
   }
 
 
   ngOnInit(): void {
     let index = this.rota.snapshot.paramMap.get("index");
     this.person = this.service.getPerson(index);
-    if(this.person===null){
-      this.voltar();
-      alert("Pessoa não encontrada!")
+    if(this.person!==null){
+      this.birthDate = this.person.birthDate.toISOString().split('T')[0]
+      this.initForm();
     }
-    this.birthDate = this.person.birthDate.toISOString().split('T')[0]
-
   }
 
-   voltar() : void {
+  voltar() : void {
     this.local.back();
   }
 
-  validaData(): Date{
-    let dataMov = new Date(this.birthDate)
+  validaData(): Date {
+    let dataMov = new Date(this.birthDate);
+    dataMov.setHours(0,0,0,0)
     let dataAtual = new Date();
+    dataAtual.setHours(0,0,0,0)
 
-    let m1 = dataAtual.getMonth()+1;
-    let a1 = dataAtual.getFullYear();
-    let d1 = dataAtual.getDate();
-
-    let m2= dataMov.getMonth()+1;
-    let a2 = dataMov.getFullYear();
-    let d2 = dataMov.getDate()+1;
-
-    if(a2<=a1 && m2<=m1 && d2<=d1){
+    if (dataMov < dataAtual) {
       return dataMov;
     }
     return null;
   }
 
+  private initForm() {
+    this.formCadastro = new FormGroup({
+      name : new FormControl(null, [Validators.required, Validators.minLength(3)]),
+      birthDate : new FormControl(null, [Validators.required]),
+      photo : new FormControl(null)
+      });
+  }
 
 }

@@ -1,39 +1,38 @@
-div{
+div {
   margin-left: 35%;
   margin-top: 30px;
 }
 
 a {
-    cursor: pointer;
-    padding: 10px;
+  cursor: pointer;
+  padding: 10px;
 }
 
 table {
-    font-family: arial, sans-serif;
-    width: 50%;
-    text-align: center;
-    padding: 10px;
-    border-collapse: collapse;
+  font-family: arial, sans-serif;
+  width: 50%;
+  text-align: center;
+  padding: 10px;
+  border-collapse: collapse;
 }
 
 td,
 th {
-    border: 1px solid #a9a6a6;
-    padding: 8px;
+  border: 1px solid #a9a6a6;
+  padding: 8px;
 }
 
 tr:nth-child(even) {
-    background-color: #dddddd;
+  background-color: #dddddd;
 }
 
 button {
-    border: none;
-    background-color: #e7e7e7;
-    color: black;
-    padding: 15px;
-    margin-left:10px ;
-    text-align: center;
-    font-size: 12px;
-    border-radius: 12px;
+  border: none;
+  background-color: #e7e7e7;
+  color: black;
+  padding: 15px;
+  margin-left: 10px;
+  text-align: center;
+  font-size: 12px;
+  border-radius: 12px;
 }
-

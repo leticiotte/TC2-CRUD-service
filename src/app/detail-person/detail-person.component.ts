@@ -11,7 +11,6 @@ import { Location } from "@angular/common";
   styleUrls: ['./detail-person.component.scss']
 })
 export class DetailPersonComponent implements OnInit {
-
   person : Person;
 
   constructor(
@@ -23,10 +22,6 @@ export class DetailPersonComponent implements OnInit {
   ngOnInit(): void {
     let index = this.rota.snapshot.paramMap.get("index");
     this.person = this.service.getPerson(index);
-    if(this.person===null){
-      this.voltar();
-      alert("Pessoa não encontrada!")
-    }
    }
 
    voltar() : void {

@@ -1,31 +1,28 @@
-import { Component, OnInit, Input, Output, SimpleChanges} from '@angular/core';
-import { WebService } from '../service/web.service';
-import { Person } from '../model/person';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input, Output, SimpleChanges } from "@angular/core";
+import { WebService } from "../service/web.service";
+import { Person } from "../model/person";
+import { ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
 
-
 @Component({
-  selector: 'app-delete-person',
-  templateUrl: './delete-person.component.html',
-  styleUrls: ['./delete-person.component.scss']
+  selector: "app-delete-person",
+  templateUrl: "./delete-person.component.html",
+  styleUrls: ["./delete-person.component.scss"],
 })
 export class DeletePersonComponent implements OnInit {
-
-  person : Person;
+  person: Person;
 
   constructor(
-    private service : WebService,
+    private service: WebService,
     private rota: ActivatedRoute,
-    private local : Location
-    ) { }
+    private local: Location
+  ) {}
 
   deletePerson() {
-    let person:Person = this.service.getPerson(this.person._id);
-    if(this.service.deletePerson(person)){
+    let person: Person = this.service.getPerson(this.person._id);
+    if (this.service.deletePerson(person)) {
       alert("Pessoa excluida com sucesso!");
-    }
-    else {
+    } else {
       alert("Dados inválidos");
     }
   }
@@ -33,13 +30,9 @@ export class DeletePersonComponent implements OnInit {
   ngOnInit(): void {
     let index = this.rota.snapshot.paramMap.get("index");
     this.person = this.service.getPerson(index);
-    if(this.person===null){
-      this.voltar();
-      alert("Pessoa não encontrada!")
-    }
-   }
+  }
 
-   voltar() : void {
+  voltar(): void {
     this.local.back();
   }
 }

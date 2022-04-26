@@ -1,22 +1,27 @@
-<form ngNativeValidate>
+<form *ngIf="person !==  null" ngNativeValidate [formGroup]="formCadastro">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" type="text/css" />
 
   <label>
       Nome
-      <input name="name" type="text" placeholder="Nome da pessoa" [(ngModel)]="person.name" />
+      <input formControlName="name" name="name" type="text" placeholder="Nome da pessoa" [(ngModel)]="person.name" />
   </label>
   <br />
 
   <label _ngcontent-xdb-c9="" class="label">
       Data de nascimento
-      <input name="birthDate" id="birthDate" type="date" [(ngModel)]="this.birthDate" />
+      <input formControlName="birthDate" name="birthDate" id="birthDate" type="date" [(ngModel)]="birthDate" max="{{today}}" />
   </label>
   <br />
   <label>
       Foto
-      <input name="photo" id="photo" type="url" placeholder="Url da imagem" [(ngModel)]="person.photo" />
+      <input formControlName="photo" name="photo" id="photo" type="url" placeholder="Url da imagem" [(ngModel)]="person.photo" />
   </label>
   <br />
   <input (click)="updatePerson()" type="submit" value="Atualizar" />
   <button routerLink="/listar" type="submit">Voltar</button>
 </form>
+
+<div *ngIf="person ===  null">
+  <h2>Pessoa não encontrada!</h2>
+  <button routerLink="/listar" type="submit" id="voltar">Voltar</button>
+</div>

@@ -1,12 +1,11 @@
-<div>
-    <p> <strong>Nome:</strong> {{person.name}}</p>
-    <p> <strong>Data de nascimento:</strong> {{ person.birthDate | date}}</p>
-    <p> <strong>Foto:</strong></p>
-    <img *ngIf="person.photo !=  undefined" src="{{person.photo}}"/>
-    <img *ngIf="person.photo == undefined" src="https://www.senff.com.br/app/themes/senff/resources/assets/images/icons/loginusuario.svg"/>
-    <button routerLink="/listar" type="submit">Voltar</button>
+<div *ngIf="person !==  null">
+  <p><strong>Nome:</strong> {{person.name}}</p>
+  <p><strong>Data de nascimento:</strong> {{ person.birthDate | date}}</p>
+  <p><strong>Foto:</strong></p>
+  <img *ngIf="person.photo !=  undefined" src="{{person.photo}}" />
+  <img *ngIf="person.photo == undefined" src="https://www.senff.com.br/app/themes/senff/resources/assets/images/icons/loginusuario.svg" />
 </div>
-
-<ng-container *ngIf="person == null">
+<div *ngIf="person ===  null">
   <h2>Pessoa não encontrada!</h2>
-</ng-container>
+</div>
+<button routerLink="/listar" type="submit" id="voltar">Voltar</button>
